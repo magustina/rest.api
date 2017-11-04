@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value={"classpath:aplication.properties"})
+@PropertySource(value={"classpath:application.properties"})
 
 public class JpaConfiguration {
 	@Autowired
@@ -59,7 +59,7 @@ public class JpaConfiguration {
 	
 	private Properties jpaProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialec", environment.getRequiredProperty("hibernate.dialec"));
+		properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
 		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
 		properties.put("hibernate.format_sql", environment.getRequiredProperty ("hibernate.format_sql"));
@@ -68,7 +68,6 @@ public class JpaConfiguration {
 
 	@Bean
 	@Autowired
-	
 	public PlatformTransactionManager transactionManager (EntityManagerFactory emf) { 
 		JpaTransactionManager txManager=new JpaTransactionManager();
 		txManager.setEntityManagerFactory(emf);
